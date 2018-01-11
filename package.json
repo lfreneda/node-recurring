@@ -1,0 +1,42 @@
+{
+  "name": "recurring",
+  "version": "1.0.0",
+  "description": "A super simple JavaScript library for defining recurring schedules and calculating occurrences for them",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/*.spec.js",
+    "autotest": "./node_modules/.bin/supervisor -q -n exit -x npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfreneda/recurring.git"
+  },
+  "keywords": [
+    "reccuring",
+    "schedules",
+    "dates",
+    "calendar",
+    "monthly",
+    "daily",
+    "yearly",
+    "occurrences"
+  ],
+  "author": "Luiz Freneda <lfreneda@gmail.com> (http://www.freneda.com.br/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfreneda/recurring/issues"
+  },
+  "homepage": "https://github.com/lfreneda/recurring#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "moment": "^2.20.1"
+  }
+}
