@@ -10,7 +10,7 @@ describe('lib/recurring', function () {
         it('given options for daily recurring every 2 days, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'd',
+                interval: 'd',
                 every: 2,
                 start: '2018-01-11',
                 end: '2018-02-01'
@@ -36,7 +36,7 @@ describe('lib/recurring', function () {
         it('given options for daily recurring every 2 days ignoring weekends, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'd',
+                interval: 'd',
                 every: 2,
                 start: '2018-01-11',
                 end: '2018-02-01',
@@ -66,7 +66,7 @@ describe('lib/recurring', function () {
         it('given options for weekly recurring every 3 months, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'w',
+                interval: 'w',
                 every: 3,
                 start: '2018-01-11',
                 end: '2019-02-01'
@@ -100,7 +100,7 @@ describe('lib/recurring', function () {
         it('given options for weekly recurring every 2 weeks on wednesday, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'w',
+                interval: 'w',
                 weekday: 3,
                 every: 2,
                 start: '2018-01-11',
@@ -127,7 +127,7 @@ describe('lib/recurring', function () {
         it('given options for monthly recurring every 4 months, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'M',
+                interval: 'M',
                 every: 4,
                 start: '2018-01-11',
                 end: '2020-02-01'
@@ -149,7 +149,7 @@ describe('lib/recurring', function () {
         it('given options for monthly recurring every 3 months on day 15, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'M',
+                interval: 'M',
                 every: 3,
                 dayOfMonth: 15,
                 start: '2018-01-11',
@@ -177,7 +177,7 @@ describe('lib/recurring', function () {
         it('given options for yearly recurring every 1 year, result should be as expected', function () {
 
             let result = recurring({
-                operator: 'y',
+                interval: 'y',
                 every: 1,
                 start: '2018-01-11',
                 end: '2021-02-01',
