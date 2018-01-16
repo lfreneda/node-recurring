@@ -30,9 +30,7 @@ describe('lib/recurring', function () {
                     '2018-01-29',
                     '2018-01-31'
                 ],
-                iterations: 11,
-                firstBaseOccurence: '2018-01-11',
-                lastBaseOccurence: '2018-01-31'
+                iterations: 11
             };
 
             assert.deepEqual(result, expectedResult);
@@ -62,9 +60,7 @@ describe('lib/recurring', function () {
                     '2018-01-29',
                     '2018-01-31'
                 ],
-                iterations: 11,
-                firstBaseOccurence: '2018-01-11',
-                lastBaseOccurence: '2018-01-31'
+                iterations: 11
             };
 
             assert.deepEqual(result, expectedResult);
@@ -104,9 +100,7 @@ describe('lib/recurring', function () {
                     '2019-01-03',
                     '2019-01-24'
                 ],
-                iterations: 19,
-                firstBaseOccurence: '2018-01-11',
-                lastBaseOccurence: '2019-01-24'
+                iterations: 19
             };
 
             assert.deepEqual(result, expectedResult);
@@ -133,9 +127,7 @@ describe('lib/recurring', function () {
                     '2018-04-11',
                     '2018-04-25'
                 ],
-                iterations: 8,
-                firstBaseOccurence: '2018-01-17',
-                lastBaseOccurence: '2018-04-25'
+                iterations: 8
             };
 
             assert.deepEqual(result, expectedResult);
@@ -163,9 +155,7 @@ describe('lib/recurring', function () {
                     '2019-09-11',
                     '2020-01-11'
                 ],
-                iterations: 7,
-                firstBaseOccurence: '2018-01-11',
-                lastBaseOccurence: '2020-01-11'
+                iterations: 7
             };
 
             assert.deepEqual(result, expectedResult);
@@ -193,14 +183,59 @@ describe('lib/recurring', function () {
                     '2019-10-15',
                     '2020-01-15'
                 ],
-                iterations: 9,
-                firstBaseOccurence: '2018-01-15',
-                lastBaseOccurence: '2020-01-15'
+                iterations: 9
             };
 
             assert.deepEqual(result, expectedResult);
         });
+
+        it('given options for monthly recurring every 1 months on day 30 (including February), result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'M',
+                every: 1,
+                dayOfMonth: 30,
+                start: '2018-01-11',
+                end: '2018-05-01'
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-30',
+                    '2018-02-28',
+                    '2018-03-30',
+                    '2018-04-30',
+                ],
+                iterations: 4
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for monthly recurring every 1 months on day 30 (including February on a leap year), result should be as expected', function () {
+            
+                        let result = recurring({
+                            interval: 'M',
+                            every: 1,
+                            dayOfMonth: 30,
+                            start: '2020-01-11',
+                            end: '2020-05-01'
+                        });
+            
+                        let expectedResult = {
+                            results: [
+                                '2020-01-30',
+                                '2020-02-29',
+                                '2020-03-30',
+                                '2020-04-30',
+                            ],
+                            iterations: 4
+                        };
+            
+                        assert.deepEqual(result, expectedResult);
+                    });
     });
+
 
     describe('recurring yearly', function () {
 
@@ -215,9 +250,7 @@ describe('lib/recurring', function () {
 
             let expectedResult = {
                 results: ['2018-01-11', '2019-01-11', '2020-01-11', '2021-01-11'],
-                iterations: 4,
-                firstBaseOccurence: '2018-01-11',
-                lastBaseOccurence: '2021-01-11'
+                iterations: 4
             };
 
             assert.deepEqual(result, expectedResult);
