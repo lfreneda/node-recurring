@@ -65,6 +65,36 @@ describe('lib/recurring', function () {
 
             assert.deepEqual(result, expectedResult);
         });
+
+        it('given options for daily recurring every 3 days with no end date, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'd',
+                every: 3,
+                start: '2018-01-11',
+                iterations: 12
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-14',
+                    '2018-01-17',
+                    '2018-01-20',
+                    '2018-01-23',
+                    '2018-01-26',
+                    '2018-01-29',
+                    '2018-02-01',
+                    '2018-02-04',
+                    '2018-02-07',
+                    '2018-02-10',
+                    '2018-02-13',
+                ],
+                iterations: 12
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
     });
 
     describe('recurring weekly', function () {
@@ -213,7 +243,7 @@ describe('lib/recurring', function () {
         });
 
         it('given options for monthly recurring every 1 months on day 30 (including February on a leap year), result should be as expected', function () {
-            
+
                         let result = recurring({
                             interval: 'M',
                             every: 1,
@@ -221,7 +251,7 @@ describe('lib/recurring', function () {
                             start: '2020-01-11',
                             end: '2020-05-01'
                         });
-            
+
                         let expectedResult = {
                             results: [
                                 '2020-01-30',
@@ -231,7 +261,7 @@ describe('lib/recurring', function () {
                             ],
                             iterations: 4
                         };
-            
+
                         assert.deepEqual(result, expectedResult);
                     });
     });
