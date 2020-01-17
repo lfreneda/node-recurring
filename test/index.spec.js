@@ -253,7 +253,6 @@ describe('lib/recurring', function () {
             let expectedResult = {
                 results: [
                     '2018-01-30',
-                    '2018-02-28',
                     '2018-03-30',
                     '2018-04-30',
                 ],
@@ -279,7 +278,7 @@ describe('lib/recurring', function () {
             let expectedResult = {
                 results: [
                     '2020-01-30',
-                    '2020-02-29',
+
                     '2020-03-30',
                     '2020-04-30',
                 ],
@@ -291,6 +290,95 @@ describe('lib/recurring', function () {
 
             assert.deepEqual(result, expectedResult);
         });
+
+        it('given options for monthly recurring every 1 month on day 31 (including February), result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'M',
+                every: 1,
+                dayOfMonth: 31,
+                start: '2019-12-23',
+                end: '2020-05-23'
+            });
+
+            let expectedResult = {
+                results: [
+                    '2019-12-31',
+                    '2020-01-31',
+                    '2020-03-31'
+                ],
+                iterations: 5,
+                info: {
+                    lastBaseOccurrence: '2020-04-29'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult)
+        });
+
+        it('given options for monthly recurring every 1 month on day 30 (including February on a leap year) skiping weekend, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'M',
+                every: 1,
+                dayOfMonth: 30,
+                start: '2019-12-23',
+                end: '2020-06-30',
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2019-12-30',
+                    '2020-01-30',
+                    '2020-03-30',
+                    '2020-04-30',
+                    '2020-06-01',
+                    '2020-06-30'
+                ],
+                iterations: 7,
+                info: {
+                    lastBaseOccurrence: '2020-06-29'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult)
+        });
+
+        it('given options for monthly recurring every 1 month on day 31 (including February) skip weekend, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'M',
+                every: 1,
+                dayOfMonth: 31,
+                start: '2019-12-23',
+                end: '2020-10-23',
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2019-12-31',
+                    '2020-01-31',
+                    '2020-03-31',
+                    '2020-06-01',
+                    '2020-07-31',
+                    '2020-08-31'
+                ],
+                iterations: 10,
+                info: {
+                    lastBaseOccurrence: '2020-09-29'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult)
+        });
+
+
     });
 
 
