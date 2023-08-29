@@ -24,7 +24,7 @@ describe('lib/recurring', function () {
                     '2018-01-17',
                     '2018-01-19',
                     '2018-01-21',
-                    '2018-01-23',   
+                    '2018-01-23',
                     '2018-01-25',
                     '2018-01-27',
                     '2018-01-29',
@@ -175,6 +175,45 @@ describe('lib/recurring', function () {
                 }
             };
 
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for weekly recurrence every 1 weeks on sunday result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'w',
+                weekday: 0,
+                every: 1,
+                start: '2023-08-28',
+                end: '2023-12-31'
+            });
+    
+            let expectedResult = {
+                results: [
+                    "2023-09-03",
+                    "2023-09-10",
+                    "2023-09-17",
+                    "2023-09-24",
+                    "2023-10-01",
+                    "2023-10-08",
+                    "2023-10-15",
+                    "2023-10-22",
+                    "2023-10-29",
+                    "2023-11-05",
+                    "2023-11-12",
+                    "2023-11-19",
+                    "2023-11-26",
+                    "2023-12-03",
+                    "2023-12-10",
+                    "2023-12-17",
+                    "2023-12-24",
+                    "2023-12-31"
+                ],
+                iterations: 18,
+                info: {
+                    lastBaseOccurrence: '2023-12-31'
+                }
+            };
             assert.deepEqual(result, expectedResult);
         });
     });
