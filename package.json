@@ -1,6 +1,6 @@
 {
   "name": "node-recurring",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A super simple JavaScript library for defining recurring schedules and calculating occurrences for them",
   "main": "lib/index.js",
   "directories": {
