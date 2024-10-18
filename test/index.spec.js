@@ -57,15 +57,100 @@ describe('lib/recurring', function () {
                     '2018-01-15',
                     '2018-01-17',
                     '2018-01-19',
-                    '2018-01-22',
                     '2018-01-23',
                     '2018-01-25',
                     '2018-01-29',
                     '2018-01-31'
                 ],
-                iterations: 11,
+                iterations: 8,
                 info: {
                     lastBaseOccurrence: '2018-01-31'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 3 days ignoring weekends, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'd',
+                every: 3,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-16',
+                    '2018-01-19',
+                    '2018-01-24',
+                    '2018-01-29',
+                    '2018-02-01'
+                ],
+                iterations: 6,
+                info: {
+                    lastBaseOccurrence: '2018-02-01'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 4 days ignoring weekends, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'd',
+                every: 4,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-17',
+                    '2018-01-23',
+                    '2018-01-29',
+                ],
+                iterations: 4,
+                info: {
+                    lastBaseOccurrence: '2018-01-29'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 5 days ignoring weekends, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'd',
+                every: 5,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-18',
+                    '2018-01-25',
+                    '2018-02-01',
+                ],
+                iterations: 4,
+                info: {
+                    lastBaseOccurrence: '2018-02-01'
                 }
             };
 
@@ -297,7 +382,7 @@ describe('lib/recurring', function () {
                 ],
                 iterations: 4,
                 info: {
-                    lastBaseOccurrence: '2018-04-28'
+                    lastBaseOccurrence: '2018-04-30'
                 }
             };
 
@@ -323,7 +408,7 @@ describe('lib/recurring', function () {
                 ],
                 iterations: 4,
                 info: {
-                    lastBaseOccurrence: '2020-04-29'
+                    lastBaseOccurrence: '2020-04-30'
                 }
             };
 
@@ -348,7 +433,7 @@ describe('lib/recurring', function () {
                 ],
                 iterations: 5,
                 info: {
-                    lastBaseOccurrence: '2020-04-29'
+                    lastBaseOccurrence: '2020-03-31'
                 }
             };
 
@@ -379,7 +464,7 @@ describe('lib/recurring', function () {
                 ],
                 iterations: 7,
                 info: {
-                    lastBaseOccurrence: '2020-06-29'
+                    lastBaseOccurrence: '2020-06-30'
                 }
             };
 
@@ -410,7 +495,7 @@ describe('lib/recurring', function () {
                 ],
                 iterations: 10,
                 info: {
-                    lastBaseOccurrence: '2020-09-29'
+                    lastBaseOccurrence: '2020-08-31'
                 }
             };
 
