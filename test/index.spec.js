@@ -57,13 +57,12 @@ describe('lib/recurring', function () {
                     '2018-01-15',
                     '2018-01-17',
                     '2018-01-19',
-                    '2018-01-22',
                     '2018-01-23',
                     '2018-01-25',
                     '2018-01-29',
                     '2018-01-31'
                 ],
-                iterations: 11,
+                iterations: 8,
                 info: {
                     lastBaseOccurrence: '2018-01-31'
                 }
@@ -72,36 +71,185 @@ describe('lib/recurring', function () {
             assert.deepEqual(result, expectedResult);
         });
 
-        it('given options for daily recurring every 3 days with no end date, result should be as expected', function () {
+        it('given options for daily recurring every 2 days ignoring weekends and with limit, result should be as expected', function () {
 
             let result = recurring({
                 interval: 'd',
-                every: 3,
+                every: 2,
                 start: '2018-01-11',
-                iterations: 12
+                limit: 3,
+                options: {
+                    skipWeekend: true
+                }
             });
 
             let expectedResult = {
                 results: [
                     '2018-01-11',
-                    '2018-01-14',
-                    '2018-01-17',
-                    '2018-01-20',
-                    '2018-01-23',
-                    '2018-01-26',
-                    '2018-01-29',
-                    '2018-02-01',
-                    '2018-02-04',
-                    '2018-02-07',
-                    '2018-02-10',
-                    '2018-02-13',
+                    '2018-01-15',
+                    '2018-01-17'
                 ],
-                iterations: 12,
+                iterations: 3,
                 info: {
-                    lastBaseOccurrence: '2018-02-13'
+                    lastBaseOccurrence: '2018-01-17'
                 }
             };
 
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 2 days ignoring weekends and with iterations, result should be as expected', function () {
+
+            let result = recurring({
+                interval: 'd',
+                every: 2,
+                start: '2018-01-11',
+                iterations: 3,
+                options: {
+                    skipWeekend: true
+                }
+            });
+
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-15',
+                    '2018-01-17'
+                ],
+                iterations: 3,
+                info: {
+                    lastBaseOccurrence: '2018-01-17'
+                }
+            };
+
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 3 days ignoring weekends, result should be as expected', function () {
+            let result = recurring({
+                interval: 'd',
+                every: 3,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-16',
+                    '2018-01-19',
+                    '2018-01-24',
+                    '2018-01-29',
+                    '2018-02-01'
+                ],
+                iterations: 6,
+                info: {
+                    lastBaseOccurrence: '2018-02-01'
+                }
+            };
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 4 days ignoring weekends, result should be as expected', function () {
+            let result = recurring({
+                interval: 'd',
+                every: 4,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-17',
+                    '2018-01-23',
+                    '2018-01-29'
+                ],
+                iterations: 4,
+                info: {
+                    lastBaseOccurrence: '2018-01-29'
+                }
+            };
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 5 days ignoring weekends, result should be as expected', function () {
+            let result = recurring({
+                interval: 'd',
+                every: 5,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-18',
+                    '2018-01-25',
+                    '2018-02-01'
+                ],
+                iterations: 4,
+                info: {
+                    lastBaseOccurrence: '2018-02-01'
+                }
+            };
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 6 days ignoring weekends, result should be as expected', function () {
+            let result = recurring({
+                interval: 'd',
+                every: 6,
+                start: '2018-01-11',
+                end: '2018-02-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-01-19',
+                    '2018-01-29'
+                ],
+                iterations: 3,
+                info: {
+                    lastBaseOccurrence: '2018-01-29'
+                }
+            };
+            assert.deepEqual(result, expectedResult);
+        });
+
+        it('given options for daily recurring every 45 days ignoring weekends, result should be as expected', function () {
+            let result = recurring({
+                interval: 'd',
+                every: 45,
+                start: '2018-01-11',
+                end: '2018-12-01',
+                options: {
+                    skipWeekend: true
+                }
+            });
+            let expectedResult = {
+                results: [
+                    '2018-01-11',
+                    '2018-03-15',
+                    '2018-05-17',
+                    '2018-07-19',
+                    '2018-09-20',
+                    '2018-11-22'
+                ],
+                iterations: 6,
+                info: {
+                    lastBaseOccurrence: '2018-11-22'
+                }
+            };
             assert.deepEqual(result, expectedResult);
         });
     });
