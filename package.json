@@ -16,7 +16,7 @@
     "url": "git+https://github.com/lfreneda/recurring.git"
   },
   "keywords": [
-    "reccuring",
+    "recurring",
     "schedules",
     "dates",
     "calendar",
@@ -43,7 +43,6 @@
     "supervisor": "^0.12.0"
   },
   "dependencies": {
-    "moment": "^2.20.1",
-    "underscore": "^1.8.3"
+    "moment": "^2.20.1"
   }
 }
